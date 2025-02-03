@@ -84,7 +84,7 @@
         <a-entity id="frame" position="-0.8 1.4 -1" rotation="0 188 0" scale="0.9 0.9 0.9"
             gltf-model="#pictureframe_model" shadow="cast:true; recieve:true;"></a-entity>
 
-        <a-entity id="chair" position="0 0.8 -3.5" rotation="0 0 0" scale="1.6 1.6 1.6" gltf-model="#chair_model"
+        <a-entity id="chair" position="0 0.8 -2.5" rotation="0 0 0" scale="1.6 1.6 1.6" gltf-model="#chair_model"
             shadow="cast:true; recieve:true;"></a-entity>
         <a-entity id="plant" position="5.5 0 -8.5" rotation="0 0 0" scale="0.4 0.4 0.4" gltf-model="#plant_model"
             shadow="cast:true; recieve:true;"></a-entity>
@@ -93,6 +93,16 @@
 
         <a-entity id="cage" position="0 5 -3.5" rotation="0 0 0" scale="1.5 1.5 1.5" gltf-model="#cage_model"
             shadow="cast:true; recieve:true;"></a-entity>
+
+
+
+
+        <a-entity id="guy">
+            <a-entity class="head" geometry="primitive: sphere; radius:0.3;" material="color:#f6cab8 ;"
+                position="0 2 -2" rotation="0 0 0" scale="1 1.3 1" shadow="cast:false; recieve:true;"></a-entity>
+            <a-entity class="body" geometry="primitive:cylinder; radius:0.3; height:0.8;" material="color:#3889c7;"
+                position="0 1.1 -2" shadow="cast:false; recieve:true;"></a-entity>
+        </a-entity>
 
         <a-entity id="room">
             <a-entity class="ground" geometry="primitive:plane; width:14; height:14;" material="color:gray;"

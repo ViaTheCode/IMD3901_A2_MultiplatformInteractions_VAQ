@@ -19,9 +19,9 @@ const c = 0;
 //functions looks a bit different. "Mostly" equivalent. However, arrow notation do not refer to "this" as themselves but rather the scope they were created in.
 //You also cannot use the 'new' keyword to create "objects" as you can with functions.
 let obj = {
-    count : 10,
-    countStuff : function (){
-        setTimeout(function(){ // the function executes on the window scope
+    count: 10,
+    countStuff: function () {
+        setTimeout(function () { // the function executes on the window scope
             this.count++;
             console.log(this.count);
         }, 300);
@@ -29,8 +29,8 @@ let obj = {
 }
 
 let objArrow = {
-    count : 10,
-    countStuff : function (){
+    count: 10,
+    countStuff: function () {
         setTimeout(() => { // the function executes on the obj scope, as setTimeout doesn't create its own.
             this.count++;
             console.log(this.count);
@@ -41,14 +41,14 @@ obj.countStuff(); // console prints "NaN", because the property "count" is not i
 objArrow.countStuff();
 
 //promises: a way to make sure something before something else ...
-const myPromise = new Promise(function(resolveFunc, rejectFunc) {
-    setTimeout(function(){ resolveFunc("I love you!"); }, 3000);
+const myPromise = new Promise(function (resolveFunc, rejectFunc) {
+    setTimeout(function () { resolveFunc("I love you!"); }, 3000);
     //setTimeout(function(){ rejectFunc("I need some time ..."); }, 3000);
 });
-  
-myPromise.then(function(value) {
+
+myPromise.then(function (value) {
     console.warn(value);
-}).catch(function(value) {
+}).catch(function (value) {
     console.error(value);
 });
 
@@ -61,7 +61,7 @@ async function myAsyncFunction() {
     return "Calling async function";
 }
 myAsyncFunction().then(
-    function(value) { console.log(value); } 
+    function (value) { console.log(value); }
 );
 
 async function awaitTestFunc() {
@@ -71,8 +71,8 @@ async function awaitTestFunc() {
 awaitTestFunc();
 
 //then just a reimder about old-school events (as they are heavily used in javascript applications)
-window.addEventListener('load', function() { console.log('page loaded') })
-window.addEventListener('five_seconds_elapsed', function() { console.warn('I miss you.') });
+window.addEventListener('load', function () { console.log('page loaded') })
+window.addEventListener('five_seconds_elapsed', function () { console.warn('I miss you.') });
 
 const event = new Event('five_seconds_elapsed');
-setTimeout( function(){document.dispatchEvent(event)}, 5000);
+setTimeout(function () { document.dispatchEvent(event) }, 5000);

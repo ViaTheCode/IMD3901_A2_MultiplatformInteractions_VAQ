@@ -44,11 +44,20 @@
             <img id="earth_img" src="assets/images/Earth.jpg" crossorigin="anonymous"></img>
             <img id="mars_img" src="assets/images/MarsSurface.jpg" crossorigin="anonymous"></img>
 
-            <!--spherical texture for Earth-->
-            <img id="earth_map" src="assets/images/EarthMap.jpg" crossorigin="anonymous">
-
             <!--A-Frame has an "a-asset-item" HTML entity for any asset that doesn't exist in HTML standards-->
             <a-asset-item id="mars_model" src="assets/models/asteroid.glb" response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="basket_model" src="assets/models/Baking tray.glb"
+                response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="chair_model" src="assets/models/Regular Office Chair.glb"
+                response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="cage_model" src="assets/models/Cage.glb" response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="plant_model" src="assets/models/Fiddle-leaf Plant.glb"
+                response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="door_model" src="assets/models/Nice Door.glb" response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="desk_model" src="assets/models/Standing Desk.glb"
+                response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="pictureframe_model" src="assets/models/Blank Picture Frame.glb"
+                response-type="arraybuffer"></a-asset-item>
 
             <!--preload:audio - try to load before we play it, don't forget crossorigin:anonymous so we can load from across domains-->
             <audio id="space_music" src="assets/sounds/SpaceMusic.mp3" preload="auto" crossorigin="anonymous"></audio>
@@ -56,77 +65,55 @@
 
         <!--define our camera-->
         <a-entity id="mainCam" camera wasd-controls look-controls position="0 1.6 0">
-            <!--castShadows only works on geometry that recieves shadows usinf the 'shadow' component-->
-            <a-entity id="flashlight" position="0.5 -0.5 0"
-                light="type:spot; intensity:1.4; castShadow:true; angle:40.0; penumbra:0.3"></a-entity>
             <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive;"></a-entity>
         </a-entity>
+
+        <!--light-->
+        <!--castShadows only works on geometry that recieves shadows using the 'shadow' component-->
+        <a-entity id="light" position="0 11 0" rotation="-75 0 0"
+            light="type:point; intensity:0.3; castShadow:true; angle:45.0; penumbra:0.3"></a-entity>
 
         <!--some bg vibes-->
         <a-entity id="bg_music" class="ambient-sound" sound="src:#space_music; autoplay:false;"></a-entity>
 
-        <!--earth display-->
-        <a-entity id="earth_plane" position="0 0.5 -4" rotation="-30 0 0">
-            <!--image-->
-            <a-entity position="0.65 0 0.01" geometry="primitive:plane; width:1.5; height:1.0;"
-                material="src:#earth_img" shadow="cast:false; recieve:true;">
-            </a-entity>
-            <!--box-->
-            <a-entity position="0 0 -0.11" geometry="primitive:box; width:3.0; height:1.25; depth:0.2;"
-                material="color:white" shadow="cast:true; recieve:true;">
-            </a-entity>
-            <!--title text-->
-            <a-entity position="-1.4 0.5 0.01"
-                text="value:Earth; color:black; font:roboto; anchor:left; baseline:top; width:1.3; wrapCount:12;">
-            </a-entity>
-            <!--info text-->
-            <a-entity position="-1.4 0.25 0.01"
-                text="value:This is the planet we all live on, hooray C:; color:black; font:roboto; anchor:left; baseline:top; width:1.25; wrapCount:18;">
-            </a-entity>
-        </a-entity>
-        <a-entity id="earth" position="0 3.5 -6" rotation="0 -90 0" geometry="primitive:sphere; radius:2.0;"
-            material="src:#earth_map" shadow="cast:true; recieve:true;"></a-entity>
-        <!--mars display-->
 
-        <a-entity id="mars_plane" position="4 0.5 0" rotation="-30 -90 0">
-            <!--image-->
-            <a-entity position="0.65 0 0.01" geometry="primitive:plane; width:1.5; height:1.0;" material="src:#mars_img"
-                shadow="cast:false; recieve:true;">
-            </a-entity>
-            <!--box-->
-            <a-entity position="0 0 -0.11" geometry="primitive:box; width:3.0; height:1.25; depth:0.2;"
-                material="color:white" shadow="cast:true; recieve:true;">
-            </a-entity>
-            <!--title text-->
-            <a-entity position="-1.4 0.5 0.01"
-                text="value:Mars; color:black; font:roboto; anchor:left; baseline:top; width:1.3; wrapCount:12;">
-            </a-entity>
-            <!--info text-->
-            <a-entity position="-1.4 0.25 0.01"
-                text="value:IT'S RED and I've been there once (not true) (also that isn't mars); color:black; font:roboto; anchor:left; baseline:top; width:1.25; wrapCount:18;">
-            </a-entity>
-        </a-entity>
-        <a-entity id="mars" position="6, 3.5, 0" rotation="0 -90 0" scale="0.005 0.005 0.005" gltf-model="#mars_model"
+        <a-entity id="desk" position="0 0 -1" rotation="0 0 0" scale="1.9 2 1.2" gltf-model="#desk_model"
+            shadow="cast:true; recieve:true;"></a-entity>
+        <a-entity id="basket" position="0.9 1.1 -1" rotation="0 90 0" scale="0.25 0.3 0.3" gltf-model="#basket_model"
+            shadow="cast:true; recieve:true;"></a-entity>
+        <a-entity id="frame" position="-0.8 1.4 -1" rotation="0 188 0" scale="0.9 0.9 0.9"
+            gltf-model="#pictureframe_model" shadow="cast:true; recieve:true;"></a-entity>
+
+        <a-entity id="chair" position="0 0.8 -3.5" rotation="0 0 0" scale="1.6 1.6 1.6" gltf-model="#chair_model"
+            shadow="cast:true; recieve:true;"></a-entity>
+        <a-entity id="plant" position="5.5 0 -8.5" rotation="0 0 0" scale="0.4 0.4 0.4" gltf-model="#plant_model"
+            shadow="cast:true; recieve:true;"></a-entity>
+        <a-entity id="door" position="-7 1.8 -5.5" rotation="0 0 0" scale="1.7 1.7 1.7" gltf-model="#door_model"
             shadow="cast:true; recieve:true;"></a-entity>
 
+        <a-entity id="cage" position="0 5 -3.5" rotation="0 0 0" scale="1.5 1.5 1.5" gltf-model="#cage_model"
+            shadow="cast:true; recieve:true;"></a-entity>
 
         <a-entity id="room">
-            <a-entity class="ground" geometry="primitive:plane; width:14; height:14;" material="color:white;"
-                position="0 0.01 0" rotation="-90 0 0" shadow="cast:false; recieve:true;"></a-entity>
+            <a-entity class="ground" geometry="primitive:plane; width:14; height:14;" material="color:gray;"
+                position="0 0.01 -3" rotation="-90 0 0" shadow="cast:false; recieve:true;"></a-entity>
+
+            <a-entity class="ceiling" geometry="primitive:plane; width:14; height:14;" material="color:gray"
+                position="0 8 -3" rotation="90 0 0" shadow="cast:false; revieve:false;"></a-entity>
 
             <a-entity id="walls">
-                <a-entity class="wall" geometry="primitive:plane; width:30; height:3;" material="color:white;"
-                    position="15 8 0" rotation="0 -90 0" shadow="cast:false; recieve:true;"></a-entity>
-                <a-entity class="wall" geometry="primitive:plane; width:30; height:3;" material="color:white;"
-                    position="-15 8 0" rotation="0 90 0" shadow="cast:false; recieve:true;"></a-entity>
-                <a-entity class="wall" geometry="primitive:plane; width:30; height:3;" material="color:white;"
-                    position="0 8 15" rotation="0 180 0" shadow="cast:false; recieve:true;"></a-entity>
-                <a-entity class="wall" geometry="primitive:plane; width:30; height:3;" material="color:white;"
-                    position="0 8 -15" rotation="0 0 0" shadow="cast:false; recieve:true;"></a-entity>
+                <a-entity class="wall" geometry="primitive:plane; width:14; height:8;" material="color:gray;"
+                    position="7 4 -3" rotation="0 -90 0" shadow="cast:false; recieve:true;"></a-entity>
+                <a-entity class="wall" geometry="primitive:plane; width:14; height:8;" material="color:gray;"
+                    position="-7 4 -3" rotation="0 90 0" shadow="cast:false; recieve:true;"></a-entity>
+                <a-entity class="wall" geometry="primitive:plane; width:14; height:8;" material="color:gray;"
+                    position="0 4 4" rotation="0 180 0" shadow="cast:false; recieve:true;"></a-entity>
+                <a-entity class="wall" geometry="primitive:plane; width:14; height:8;" material="color:gray;"
+                    position="0 4 -10" rotation="0 0 0" shadow="cast:false; recieve:true;"></a-entity>
             </a-entity>
         </a-entity>
 
-        <a-entity id="universal_button">
+        <!--<a-entity id="universal_button">
             <a-entity class="button interactive" spinning-effect="duration:45000;" position="0 0.6 0"
                 geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255,100,100);"
                 shadow="cast:true; recieve:true;"
@@ -136,10 +123,10 @@
 
             <a-entity class="pedestal" position="0 0.3 0" geometry="primitive:box; width:0.5; depth:0.5; height:0.6;"
                 material="color:white;" shadow="cast:true; recieve:true"></a-entity>
-        </a-entity>
+        </a-entity> -->
 
         <!--add a basic envirmonent to ground users-->
-        <a-entity environment="preset:starry"></a-entity>
+        <a-entity environment="preset:checkerboard"></a-entity>
 </body>
 
 </html>

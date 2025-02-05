@@ -128,6 +128,7 @@ AFRAME.registerComponent('change-face', {
             r_eye.setAttribute('id', 'r_eye');
             l_eye.setAttribute('id', 'l_eye');
             glasses.setAttribute('id', 'glasses');
+            glasses.setAttribute('move-glasses', '');
             hat.setAttribute('id', 'hat');
 
         });

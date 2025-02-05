@@ -5,9 +5,9 @@
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script
         src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
-    <script src="js/spinning-effect.js"></script>
-    <script src="js/test-script.js"></script>
     <script src="js/change-face.js"></script>
+    <script src="js/move-glasses.js"></script>
+    <script src="js/drop-cage.js"></script>
 
     <link rel="stylesheet" href="CSS/user-gesture.css">
 
@@ -43,8 +43,7 @@
         <!--this is where we load all assets such as images, soundm video, models, etc-->
         <a-assets>
             <!--ALWAYS set crossorigin to anonymous so they load properly-->
-            <img id="earth_img" src="assets/images/Earth.jpg" crossorigin="anonymous"></img>
-            <img id="mars_img" src="assets/images/MarsSurface.jpg" crossorigin="anonymous"></img>
+            <img id="wanted-poster" src="assets/images/wanted-poster.png" crossorigin="anonymous"></img>
 
             <!--A-Frame has an "a-asset-item" HTML entity for any asset that doesn't exist in HTML standards-->
             <a-asset-item id="basket_model" src="assets/models/Baking tray.glb"
@@ -78,7 +77,8 @@
 
 
             <!--preload:audio - try to load before we play it, don't forget crossorigin:anonymous so we can load from across domains-->
-            <audio id="space_music" src="assets/sounds/SpaceMusic.mp3" preload="auto" crossorigin="anonymous"></audio>
+            <audio id="detective_music" src="assets/sounds/detective-76553.mp3" preload="auto"
+                crossorigin="anonymous"></audio>
         </a-assets>
 
         <!--define our camera-->
@@ -92,7 +92,7 @@
             light="type:point; intensity:0.3; castShadow:true; angle:45.0; penumbra:0.3"></a-entity>
 
         <!--some bg vibes-->
-        <a-entity id="bg_music" class="ambient-sound" sound="src:#space_music; autoplay:false;"></a-entity>
+        <a-entity id="bg_music" class="ambient-sound" sound="src:#detective_music; autoplay:false;"></a-entity>
 
 
         <a-entity id="desk" position="0 0 -1" rotation="0 0 0" scale="1.9 2 1.2" gltf-model="#desk_model"
@@ -102,6 +102,10 @@
         <a-entity id="frame" position="-0.8 1.4 -1" rotation="0 188 0" scale="0.9 0.9 0.9"
             gltf-model="#pictureframe_model" shadow="cast:true; recieve:true;"></a-entity>
 
+        <a-entity position="-0.8 1.45 -0.95" rotation="-8 9 0" geometry="primitive:plane; width:0.3; height:0.45;"
+            material="src:#wanted-poster" shadow="cast:false; recieve:true;">
+        </a-entity>
+
         <a-entity id="chair" position="0 0.8 -2.5" rotation="0 0 0" scale="1.6 1.6 1.6" gltf-model="#chair_model"
             shadow="cast:true; recieve:true;"></a-entity>
         <a-entity id="plant" position="5.5 0 -8.5" rotation="0 0 0" scale="0.4 0.4 0.4" gltf-model="#plant_model"
@@ -109,7 +113,7 @@
         <a-entity id="door" position="-7 1.8 -5.5" rotation="0 0 0" scale="1.7 1.7 1.7" gltf-model="#door_model"
             shadow="cast:true; recieve:true;"></a-entity>
 
-        <a-entity id="cage" position="0 5 -3.5" rotation="0 0 0" scale="1.5 1.5 1.5" gltf-model="#cage_model"
+        <a-entity class="cage" position="0 5 -3.041" rotation="0 0 0" scale="1.5 1.5 1.5" gltf-model="#cage_model"
             shadow="cast:true; recieve:true;"></a-entity>
 
 
@@ -148,7 +152,7 @@
             </a-entity>
         </a-entity>
 
-        <a-entity id="universal_button">
+        <a-entity id="next_button">
             <a-entity class="button interactive" change-face="true;" position="-0.2 1.18 -1"
                 geometry="primitive:cylinder; radius:0.15; height:0.3;" material="color:rgb(255,100,100);"
                 shadow="cast:true; recieve:true;"
@@ -161,6 +165,18 @@
                 shadow="cast:true; recieve:true"></a-entity>
         </a-entity>
 
+        <a-entity id="arrest_button">
+            <a-entity drop-cage class="button interactive" position="0.2 1.18 -1"
+                geometry="primitive:cylinder; radius:0.15; height:0.3;" material="color:rgb(255,100,100);"
+                shadow="cast:true; recieve:true;"
+                animation__mouseenter="property:material.color; type:color; to:rgb(255,0,0); startEvents:mouseenter; dur:200;"
+                animation__leave="property:material.color; type:color; to:rgb(255,100,100); startEvents:mouseleave; dur:200;"
+                animation__click="property:geometry.height; from:0.25; to:0.3; startEvents:click; dur:300;"></a-entity>
+
+            <a-entity class="pedestal" position="0.2 1.18 -1"
+                geometry="primitive:box; width:0.35; depth:0.42; height:0.125;" material="color:white;"
+                shadow="cast:true; recieve:true"></a-entity>
+        </a-entity>
         <!--add a basic envirmonent to ground users-->
         <a-entity environment="preset:checkerboard"></a-entity>
 
